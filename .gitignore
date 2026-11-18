@@ -1,0 +1,37 @@
+# Gradle
+.gradle/
+build/
+**/build/
+!gradle/wrapper/gradle-wrapper.jar
+.kotlin/
+
+# Android Studio / IntelliJ
+.idea/
+*.iml
+.navigation/
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Configuración local y secretos (NUNCA al repositorio)
+local.properties
+keystore.properties
+secrets.properties
+*.jks
+*.keystore
+*.p12
+*.pem
+google-services.json
+admob.properties
+
+# Salidas
+*.apk
+*.aab
+*.ap_
+*.dex
+output-metadata.json
+
+# Sistema
+.DS_Store
+Thumbs.db
+*.log
