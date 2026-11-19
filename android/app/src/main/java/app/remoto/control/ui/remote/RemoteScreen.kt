@@ -46,6 +46,7 @@ import app.remoto.control.core.driver.TvDevice
 import app.remoto.control.core.driver.TvPreviewState
 import app.remoto.control.ui.components.RemotoTopBar
 import app.remoto.control.ui.components.deviceDisplayName
+import app.remoto.control.ui.components.platformNameRes
 import app.remoto.control.ui.components.rememberHaptics
 import app.remoto.control.ui.help.ConnectionErrorContent
 import app.remoto.control.ui.pairing.PairingContent
@@ -103,7 +104,8 @@ private fun RemoteContent(
     var showApps by rememberSaveable { mutableStateOf(false) }
     val haptic = rememberHaptics(state.hapticsEnabled)
 
-    val title = state.device?.let { deviceDisplayName(it) } ?: stringResource(R.string.app_name)
+    val shownDevice = state.device ?: state.unsupportedDevice
+    val title = shownDevice?.let { deviceDisplayName(it) } ?: stringResource(R.string.app_name)
     Scaffold(
         topBar = {
             RemotoTopBar(
@@ -123,6 +125,7 @@ private fun RemoteContent(
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             when {
+                state.unsupportedDevice != null -> PlatformComingSoon(state.unsupportedDevice, title, onBack)
                 state.deviceMissing -> DeviceMissing(onBack)
                 state.loading -> Loading(null)
                 else -> when (val connection = state.connection) {
@@ -194,6 +197,19 @@ private fun Loading(deviceName: String?) {
 private fun DeviceMissing(onBack: () -> Unit) {
     Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
         Text(stringResource(R.string.remote_device_missing), style = MaterialTheme.typography.bodyLarge)
+        Button(onClick = onBack, modifier = Modifier.fillMaxWidth()) { Text(stringResource(R.string.action_back)) }
+    }
+}
+
+/** Tele guardada cuya plataforma todavía no tiene driver. */
+@Composable
+private fun PlatformComingSoon(device: TvDevice, name: String, onBack: () -> Unit) {
+    Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+        val platformName = stringResource(platformNameRes(device.platform))
+        Text(
+            stringResource(R.string.remote_platform_coming_soon, name, platformName),
+            style = MaterialTheme.typography.bodyLarge,
+        )
         Button(onClick = onBack, modifier = Modifier.fillMaxWidth()) { Text(stringResource(R.string.action_back)) }
     }
 }

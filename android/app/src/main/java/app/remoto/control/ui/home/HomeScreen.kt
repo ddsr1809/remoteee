@@ -39,6 +39,7 @@ import app.remoto.control.ui.theme.RemotoTheme
 @Composable
 fun HomeScreen(
     onOpenRemote: (String) -> Unit,
+    onDiscover: () -> Unit,
     onComingSoon: (ComingSoonFeature) -> Unit,
     onDevices: () -> Unit,
     onSettings: () -> Unit,
@@ -50,6 +51,7 @@ fun HomeScreen(
     HomeContent(
         state = state,
         onOpenRemote = onOpenRemote,
+        onDiscover = onDiscover,
         onComingSoon = onComingSoon,
         onTryDemo = viewModel::startDemo,
         onDevices = onDevices,
@@ -62,6 +64,7 @@ fun HomeScreen(
 private fun HomeContent(
     state: HomeUiState,
     onOpenRemote: (String) -> Unit,
+    onDiscover: () -> Unit,
     onComingSoon: (ComingSoonFeature) -> Unit,
     onTryDemo: () -> Unit,
     onDevices: () -> Unit,
@@ -109,7 +112,7 @@ private fun HomeContent(
                 }
             }
             Text(stringResource(R.string.home_add_title), style = MaterialTheme.typography.titleMedium)
-            StartOptions(onComingSoon = onComingSoon, onTryDemo = onTryDemo)
+            StartOptions(onDiscover = onDiscover, onComingSoon = onComingSoon, onTryDemo = onTryDemo)
         }
     }
 }
@@ -122,6 +125,7 @@ private fun HomePreview() {
         HomeContent(
             state = HomeUiState(devices = listOf(TvDevice("demo", "", Platform.DEMO)), lastDeviceId = "demo"),
             onOpenRemote = {},
+            onDiscover = {},
             onComingSoon = {},
             onTryDemo = {},
             onDevices = {},

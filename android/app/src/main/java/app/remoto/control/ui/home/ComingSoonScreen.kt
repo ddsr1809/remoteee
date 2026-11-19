@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.SettingsRemote
-import androidx.compose.material.icons.filled.Wifi
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -25,7 +24,7 @@ import app.remoto.control.R
 import app.remoto.control.ui.ComingSoonFeature
 import app.remoto.control.ui.components.RemotoTopBar
 
-/** Pantalla provisional para Wi-Fi (hito 2) e infrarrojo (hito 5). */
+/** Pantalla provisional para infrarrojo (hito 5). */
 @Composable
 fun ComingSoonScreen(
     feature: ComingSoonFeature,
@@ -35,7 +34,6 @@ fun ComingSoonScreen(
 ) {
     LaunchedEffect(viewModel) { viewModel.demoReady.collect { onDemoReady(it) } }
     val (icon, title, body) = when (feature) {
-        ComingSoonFeature.WIFI -> Triple(Icons.Filled.Wifi, R.string.start_option_wifi, R.string.coming_soon_wifi_body)
         ComingSoonFeature.INFRARED ->
             Triple(Icons.Filled.SettingsRemote, R.string.start_option_ir, R.string.coming_soon_ir_body)
     }

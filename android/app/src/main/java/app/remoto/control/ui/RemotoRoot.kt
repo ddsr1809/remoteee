@@ -20,6 +20,9 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import app.remoto.control.core.driver.HelpTopic
 import app.remoto.control.ui.devices.DevicesScreen
+import app.remoto.control.ui.discover.DiscoverScreen
+import app.remoto.control.ui.discover.ManualAddScreen
+import app.remoto.control.ui.discover.NotFoundScreen
 import app.remoto.control.ui.help.HelpScreen
 import app.remoto.control.ui.home.ComingSoonScreen
 import app.remoto.control.ui.home.HomeScreen
@@ -64,6 +67,13 @@ private fun AppNavHost(
     val openHelp: (HelpTopic?) -> Unit = { topic -> navController.navigate(HelpRoute(topic?.name)) }
     val openComingSoon: (ComingSoonFeature) -> Unit = { f -> navController.navigate(ComingSoonRoute(f.name)) }
     val back: () -> Unit = { navController.popBackStack() }
+    val openDiscover: () -> Unit = { navController.navigate(DiscoverRoute) }
+
+    // Tras guardar una tele (búsqueda o IP manual): inicio como única pantalla debajo y su control encima.
+    val openAddedDevice: (String) -> Unit = { id ->
+        navController.navigate(HomeRoute) { popUpTo(navController.graph.id) { inclusive = true } }
+        openRemote(id)
+    }
 
     NavHost(
         navController = navController,
@@ -71,6 +81,7 @@ private fun AppNavHost(
     ) {
         composable<WelcomeRoute> {
             WelcomeScreen(
+                onDiscover = openDiscover,
                 onComingSoon = openComingSoon,
                 onDemoReady = { id ->
                     navController.navigate(HomeRoute) { popUpTo(WelcomeRoute) { inclusive = true } }
@@ -81,11 +92,26 @@ private fun AppNavHost(
         composable<HomeRoute> {
             HomeScreen(
                 onOpenRemote = openRemote,
+                onDiscover = openDiscover,
                 onComingSoon = openComingSoon,
                 onDevices = { navController.navigate(DevicesRoute) },
                 onSettings = { navController.navigate(SettingsRoute) },
                 onHelp = { openHelp(null) },
             )
+        }
+        composable<DiscoverRoute> {
+            DiscoverScreen(
+                onBack = back,
+                onAdded = openAddedDevice,
+                onNotFound = { navController.navigate(NotFoundRoute) },
+                onHelp = { openHelp(it) },
+            )
+        }
+        composable<NotFoundRoute> {
+            NotFoundScreen(onBack = back, onManualAdd = { navController.navigate(ManualAddRoute) })
+        }
+        composable<ManualAddRoute> {
+            ManualAddScreen(onBack = back, onAdded = openAddedDevice)
         }
         composable<RemoteRoute> {
             RemoteScreen(onBack = back, onHelp = openHelp)
@@ -107,7 +133,8 @@ private fun AppNavHost(
         composable<ComingSoonRoute> { entry ->
             val route = entry.toRoute<ComingSoonRoute>()
             ComingSoonScreen(
-                feature = ComingSoonFeature.entries.firstOrNull { it.name == route.feature } ?: ComingSoonFeature.WIFI,
+                feature = ComingSoonFeature.entries.firstOrNull { it.name == route.feature }
+                    ?: ComingSoonFeature.INFRARED,
                 onBack = back,
                 onDemoReady = { id ->
                     navController.navigate(HomeRoute) { popUpTo(navController.graph.id) { inclusive = true } }

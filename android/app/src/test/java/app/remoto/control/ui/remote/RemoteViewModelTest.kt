@@ -83,6 +83,19 @@ class RemoteViewModelTest {
 
         assertTrue(vm.state.value.deviceMissing)
         assertNull(vm.state.value.device)
+        assertNull(vm.state.value.unsupportedDevice)
+    }
+
+    @Test
+    fun `una tele guardada sin driver todavia se muestra como proximamente`() = runTest(mainRule.dispatcher) {
+        val samsung = TvDevice("s1", "", Platform.SAMSUNG, host = "192.168.1.10")
+        devices.upsert(samsung)
+        val vm = viewModel(deviceId = samsung.id)
+        observe(vm)
+
+        assertEquals(samsung, vm.state.value.unsupportedDevice)
+        assertFalse(vm.state.value.deviceMissing)
+        assertFalse(vm.state.value.loading)
     }
 
     @Test

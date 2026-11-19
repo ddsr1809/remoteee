@@ -91,6 +91,8 @@ enum class HelpTopic {
     NO_WIFI,
     DEVICE_UNREACHABLE,
 
+    /** Consejos cuando la búsqueda no encuentra la tele (pantalla "No aparece mi tele"). */
+    TV_NOT_FOUND,
     ;
 
     companion object {

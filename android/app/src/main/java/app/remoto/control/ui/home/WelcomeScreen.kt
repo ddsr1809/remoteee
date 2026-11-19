@@ -29,16 +29,18 @@ import app.remoto.control.ui.theme.RemotoTheme
 /** Primera apertura. El consentimiento de anuncios (UMP) se añade antes de esto en el hito 6. */
 @Composable
 fun WelcomeScreen(
+    onDiscover: () -> Unit,
     onComingSoon: (ComingSoonFeature) -> Unit,
     onDemoReady: (String) -> Unit,
     viewModel: HomeViewModel = hiltViewModel(),
 ) {
     LaunchedEffect(viewModel) { viewModel.demoReady.collect { onDemoReady(it) } }
-    WelcomeContent(onComingSoon = onComingSoon, onTryDemo = viewModel::startDemo)
+    WelcomeContent(onDiscover = onDiscover, onComingSoon = onComingSoon, onTryDemo = viewModel::startDemo)
 }
 
 @Composable
 private fun WelcomeContent(
+    onDiscover: () -> Unit,
     onComingSoon: (ComingSoonFeature) -> Unit,
     onTryDemo: () -> Unit,
 ) {
@@ -66,7 +68,7 @@ private fun WelcomeContent(
             style = MaterialTheme.typography.bodyLarge,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
-        StartOptions(onComingSoon = onComingSoon, onTryDemo = onTryDemo)
+        StartOptions(onDiscover = onDiscover, onComingSoon = onComingSoon, onTryDemo = onTryDemo)
     }
 }
 
@@ -75,6 +77,6 @@ private fun WelcomeContent(
 @Composable
 private fun WelcomePreview() {
     RemotoTheme(dynamicColor = false) {
-        Surface { WelcomeContent(onComingSoon = {}, onTryDemo = {}) }
+        Surface { WelcomeContent(onDiscover = {}, onComingSoon = {}, onTryDemo = {}) }
     }
 }

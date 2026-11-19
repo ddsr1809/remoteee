@@ -27,8 +27,13 @@ import kotlinx.coroutines.launch
 data class RemoteUiState(
     /** Todavía buscando el dispositivo guardado. */
     val loading: Boolean = true,
-    /** El dispositivo ya no existe o no hay driver para su plataforma. */
+    /** El dispositivo ya no existe en este teléfono. */
     val deviceMissing: Boolean = false,
+    /**
+     * Tele guardada cuya plataforma todavía no tiene driver (por ejemplo, una Samsung
+     * agregada en el hito 2, antes de que exista su driver en el hito 3).
+     */
+    val unsupportedDevice: TvDevice? = null,
     val device: TvDevice? = null,
     val connection: ConnectionState = ConnectionState.Disconnected,
     val capabilities: Set<Capability> = emptySet(),
@@ -55,6 +60,7 @@ class RemoteViewModel @Inject constructor(
 
     /** null = buscando; true = encontrado; false = no existe o no tiene driver. */
     private val found = MutableStateFlow<Boolean?>(null)
+    private val unsupported = MutableStateFlow<TvDevice?>(null)
 
     private val _apps = MutableStateFlow<List<TvApp>>(emptyList())
     val apps: StateFlow<List<TvApp>> = _apps.asStateFlow()
@@ -76,11 +82,13 @@ class RemoteViewModel @Inject constructor(
     val state: StateFlow<RemoteUiState> = combine(
         sessionState,
         found,
+        unsupported,
         settings.settings.map { it.hapticsEnabled },
-    ) { snapshot, found, haptics ->
+    ) { snapshot, found, unsupported, haptics ->
         RemoteUiState(
             loading = found == null,
-            deviceMissing = found == false,
+            deviceMissing = found == false && unsupported == null,
+            unsupportedDevice = unsupported,
             device = snapshot.device,
             connection = snapshot.connection,
             capabilities = snapshot.capabilities,
@@ -93,6 +101,7 @@ class RemoteViewModel @Inject constructor(
         viewModelScope.launch {
             val device = devices.get(deviceId)
             if (device == null || !session.supports(device.platform)) {
+                unsupported.value = device
                 found.value = false
                 return@launch
             }
