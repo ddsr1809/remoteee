@@ -3,11 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <!--
-        Hito 1: el modo demostración no usa la red, así que no se declara ningún permiso.
-        Los de la sección 7.4 (INTERNET, ACCESS_NETWORK_STATE, ACCESS_WIFI_STATE,
-        CHANGE_WIFI_MULTICAST_STATE, TRANSMIT_IR) se añaden en el hito que los necesita.
-        Con targetSdk 36 NO se declara ACCESS_LOCAL_NETWORK.
+        Hito 2: búsqueda de teles en la red local. Solo los permisos de la sección 7.4 que
+        ya se usan: INTERNET (sockets), ACCESS_NETWORK_STATE (saber si hay Wi-Fi) y
+        CHANGE_WIFI_MULTICAST_STATE (bloqueo de multidifusión durante la búsqueda SSDP).
+        ACCESS_WIFI_STATE y TRANSMIT_IR se añaden en el hito que los necesite.
+        Con targetSdk 36 NO se declara ACCESS_LOCAL_NETWORK (ver core/net/LocalNetworkAccess.kt).
     -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
 
     <application
         android:name=".RemotoApp"

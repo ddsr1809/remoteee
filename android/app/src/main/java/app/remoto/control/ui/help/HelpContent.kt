@@ -31,6 +31,7 @@ fun HelpTopic.text(): HelpText = when (this) {
         HelpText(R.string.help_local_network_title, R.string.help_local_network_body)
     HelpTopic.NO_WIFI -> HelpText(R.string.help_no_wifi_title, R.string.help_no_wifi_body)
     HelpTopic.DEVICE_UNREACHABLE -> HelpText(R.string.help_unreachable_title, R.string.help_unreachable_body)
+    HelpTopic.TV_NOT_FOUND -> HelpText(R.string.help_tv_not_found_title, R.string.help_tv_not_found_body)
 }
 
 /**

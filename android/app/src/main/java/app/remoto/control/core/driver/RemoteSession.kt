@@ -1,6 +1,7 @@
 package app.remoto.control.core.driver
 
 import app.remoto.control.core.ApplicationScope
+import app.remoto.control.core.diagnostics.DiagnosticsLog
 import app.remoto.control.core.storage.SettingsRepository
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -30,6 +31,7 @@ class RemoteSession @Inject constructor(
     factories: Set<@JvmSuppressWildcards TvDriverFactory>,
     private val settings: SettingsRepository,
     @param:ApplicationScope private val scope: CoroutineScope,
+    private val log: DiagnosticsLog,
 ) {
     private class Active(val device: TvDevice, val driver: TvDriver)
 
@@ -157,7 +159,7 @@ class RemoteSession @Inject constructor(
 
     /**
      * Los drivers publican sus errores como estado; una excepción aquí es un error de
-     * programación y no debe tumbar la app. En el hito 2 se enviará al registro de diagnóstico.
+     * programación y no debe tumbar la app. Queda en el registro de diagnóstico.
      */
     private inline fun safely(block: () -> Unit) {
         try {
@@ -165,7 +167,12 @@ class RemoteSession @Inject constructor(
         } catch (e: CancellationException) {
             throw e
         } catch (e: Exception) {
-            // Ignorado a propósito (ver comentario de la función).
+            val platform = active.value?.device?.platform
+            log.log(TAG, "Excepción inesperada del driver ${platform ?: "-"}", e)
         }
+    }
+
+    private companion object {
+        const val TAG = "session"
     }
 }

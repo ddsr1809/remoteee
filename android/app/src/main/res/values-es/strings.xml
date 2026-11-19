@@ -22,8 +22,34 @@
     <string name="home_open_remote">Abrir el control</string>
     <string name="home_add_title">Agregar una tele</string>
     <string name="coming_soon_title">Próximamente</string>
-    <string name="coming_soon_wifi_body">La búsqueda de teles en tu Wi-Fi está en camino. Mientras tanto, puedes probar todos los botones con la tele simulada.</string>
     <string name="coming_soon_ir_body">El control por infrarrojo está en camino. Mientras tanto, puedes probar todos los botones con la tele simulada.</string>
+
+
+    <!-- Búsqueda (hito 2) -->
+    <string name="discover_searching">Buscando teles en tu Wi-Fi…</string>
+    <string name="discover_pick">Toca tu tele para agregarla</string>
+    <string name="discover_add">Agregar</string>
+    <string name="discover_saved">Ya guardada</string>
+    <string name="discover_none_title">No encontré ninguna tele</string>
+    <string name="discover_none_body">Revisa que la tele esté encendida y conectada a la misma red Wi-Fi que tu teléfono, y busca otra vez.</string>
+    <string name="discover_search_again">Buscar otra vez</string>
+    <string name="discover_not_found">¿No aparece tu tele?</string>
+    <string name="discover_no_wifi_body">Para encontrar tu tele, conecta el teléfono a la misma red Wi-Fi que la tele. Con datos móviles no funciona.</string>
+    <string name="discover_open_wifi_settings">Abrir ajustes de Wi-Fi</string>
+    <string name="manual_title">Agregar por IP</string>
+    <string name="manual_instructions">La dirección IP está en los ajustes de red de tu tele (normalmente Ajustes › Red › Estado de la red) o en la lista de dispositivos de tu router.</string>
+    <string name="manual_ip_label">Dirección IP</string>
+    <string name="manual_ip_error_format">Escribe cuatro números del 0 al 255 separados por puntos, como 192.168.1.20.</string>
+    <string name="manual_ip_error_reserved">Esta dirección no puede ser de una tele.</string>
+    <string name="manual_ip_warning_public">No parece una dirección de una red de casa. Revísala antes de guardar.</string>
+    <string name="manual_platform_label">¿Qué tipo de tele es?</string>
+    <string name="manual_save">Agregar tele</string>
+    <string name="local_network_body">Para encontrar tu tele, Android necesita que permitas a Remoto comunicarse con los dispositivos de tu red de casa.\n\nRemoto solo lo usa para hablar con tu tele, y tu lista de dispositivos nunca sale del teléfono.</string>
+    <string name="local_network_open_settings">Abrir ajustes de la app</string>
+    <string name="diagnostics_copy">Copiar registro de diagnóstico</string>
+    <string name="diagnostics_copy_desc">Si algo no funciona, pégalo en tu mensaje al reportarlo. No contiene direcciones IP completas ni datos personales, y nunca se envía solo a ningún lado.</string>
+    <string name="diagnostics_copied">Registro de diagnóstico copiado</string>
+    <string name="diagnostics_clip_label">Registro de diagnóstico de Remoto</string>
 
     <!-- Dispositivos -->
     <string name="device_default_demo">Tele simulada</string>
@@ -41,6 +67,7 @@
     <!-- Control -->
     <string name="remote_connecting">Conectando con %1$s…</string>
     <string name="remote_device_missing">Esta tele ya no está guardada en este teléfono.</string>
+    <string name="remote_platform_coming_soon">%1$s quedó guardada. El control para teles %2$s llega en una próxima versión de la app. Mientras tanto, puedes probar todos los botones con la tele simulada.</string>
     <string name="remote_simulate_error">Simular un error</string>
     <string name="simulate_timeout">Tiempo de conexión agotado</string>
     <string name="simulate_pairing_rejected">Emparejamiento rechazado</string>
@@ -136,4 +163,6 @@
     <string name="help_no_wifi_body">Para controlar una tele por la red, conecta el teléfono a la misma red Wi-Fi que la tele. Los datos móviles no sirven para esto.\n\nSi tu teléfono tiene emisor infrarrojo, puedes usar el infrarrojo.</string>
     <string name="help_unreachable_title">No se encuentra la tele</string>
     <string name="help_unreachable_body">La tele no responde en su dirección de siempre.\n\n• Enciende la tele con su control original e inténtalo de nuevo.\n• Si el router le dio una dirección nueva, vuelve a buscar en tu Wi-Fi.\n• Reiniciar el router también puede ayudar.</string>
+    <string name="help_tv_not_found_title">Mi tele no aparece</string>
+    <string name="help_tv_not_found_body">Casi siempre es la red. Revisa que:\n\n• La tele esté encendida. Algunas apagan su red a los pocos minutos de apagarlas.\n• El teléfono y la tele estén en la misma red Wi-Fi. Las redes de invitados suelen separar los dispositivos.\n• Tu router no aísle los dispositivos entre sí (a veces se llama “aislamiento de AP” o “aislamiento de clientes”).\n• El teléfono no tenga una VPN encendida.\n• Android TV / Google TV: la tele esté en la pantalla de inicio, no en reposo.\n\nSi aun así no aparece, puedes agregarla con su dirección IP.</string>
 </resources>

@@ -31,6 +31,7 @@ import app.remoto.control.ui.ComingSoonFeature
  */
 @Composable
 fun StartOptions(
+    onDiscover: () -> Unit,
     onComingSoon: (ComingSoonFeature) -> Unit,
     onTryDemo: () -> Unit,
     modifier: Modifier = Modifier,
@@ -40,7 +41,7 @@ fun StartOptions(
             icon = Icons.Filled.Wifi,
             title = stringResource(R.string.start_option_wifi),
             description = stringResource(R.string.start_option_wifi_desc),
-            onClick = { onComingSoon(ComingSoonFeature.WIFI) },
+            onClick = onDiscover,
         )
         OptionCard(
             icon = Icons.Filled.SettingsRemote,

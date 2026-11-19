@@ -90,6 +90,9 @@ enum class HelpTopic {
     LOCAL_NETWORK_PERMISSION,
     NO_WIFI,
     DEVICE_UNREACHABLE,
+
+    /** Consejos cuando la búsqueda no encuentra la tele (pantalla "No aparece mi tele"). */
+    TV_NOT_FOUND,
     ;
 
     companion object {
@@ -113,10 +116,14 @@ data class TvApp(val id: String, val name: String)
  *
  * @property name nombre puesto por el usuario. Vacío = usar el nombre por defecto de la plataforma.
  * @property host IP o nombre de red; `null` en demo e infrarrojo.
+ * @property uniqueId identificador que anuncia la propia tele al buscarla (por ejemplo, el
+ *   `uuid` de SSDP). Sirve para reconocerla aunque el router le cambie la IP. `null` si se
+ *   agregó por IP manual o la tele no anuncia ninguno.
  */
 data class TvDevice(
     val id: String,
     val name: String,
     val platform: Platform,
     val host: String? = null,
+    val uniqueId: String? = null,
 )

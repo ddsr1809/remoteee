@@ -84,14 +84,22 @@ class DataStoreDeviceRepository @Inject constructor(
         val name: String,
         val platform: String,
         val host: String? = null,
+        // Hito 2. Opcional: lo guardado en el hito 1 no lo tiene y se lee como null.
+        val uniqueId: String? = null,
     ) {
         fun toDevice(): TvDevice? {
             val p = Platform.entries.firstOrNull { it.name == platform } ?: return null
-            return TvDevice(id = id, name = name, platform = p, host = host)
+            return TvDevice(id = id, name = name, platform = p, host = host, uniqueId = uniqueId)
         }
 
         companion object {
-            fun from(d: TvDevice) = StoredDevice(id = d.id, name = d.name, platform = d.platform.name, host = d.host)
+            fun from(d: TvDevice) = StoredDevice(
+                id = d.id,
+                name = d.name,
+                platform = d.platform.name,
+                host = d.host,
+                uniqueId = d.uniqueId,
+            )
         }
     }
 

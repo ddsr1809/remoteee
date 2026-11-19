@@ -31,6 +31,7 @@ import app.remoto.control.R
 import app.remoto.control.core.storage.AppSettings
 import app.remoto.control.core.storage.ThemeMode
 import app.remoto.control.ui.components.RemotoTopBar
+import app.remoto.control.ui.components.rememberCopyDiagnostics
 import app.remoto.control.ui.theme.RemotoTheme
 
 @Composable
@@ -51,6 +52,7 @@ fun SettingsScreen(
         onHelp = onHelp,
         onHaptics = viewModel::setHaptics,
         onTheme = viewModel::setTheme,
+        onCopyDiagnostics = rememberCopyDiagnostics(),
     )
 }
 
@@ -62,6 +64,7 @@ private fun SettingsContent(
     onHelp: () -> Unit,
     onHaptics: (Boolean) -> Unit,
     onTheme: (ThemeMode) -> Unit,
+    onCopyDiagnostics: () -> Unit,
 ) {
     Scaffold(topBar = { RemotoTopBar(title = stringResource(R.string.settings_title), onBack = onBack) }) { padding ->
         Column(Modifier.fillMaxSize().padding(padding).verticalScroll(rememberScrollState())) {
@@ -105,6 +108,11 @@ private fun SettingsContent(
                 headlineContent = { Text(stringResource(R.string.help_title)) },
                 modifier = Modifier.clickable(onClick = onHelp),
             )
+            ListItem(
+                headlineContent = { Text(stringResource(R.string.diagnostics_copy)) },
+                supportingContent = { Text(stringResource(R.string.diagnostics_copy_desc)) },
+                modifier = Modifier.clickable(onClick = onCopyDiagnostics),
+            )
             HorizontalDivider()
 
             SectionTitle(stringResource(R.string.settings_about))
@@ -131,6 +139,6 @@ private fun SectionTitle(text: String) {
 @Composable
 private fun SettingsPreview() {
     RemotoTheme(dynamicColor = false) {
-        SettingsContent(AppSettings(), "0.1.0", {}, {}, {}, {})
+        SettingsContent(AppSettings(), "0.2.0", {}, {}, {}, {}, {})
     }
 }

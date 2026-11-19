@@ -24,8 +24,36 @@
     <string name="home_open_remote">Open remote</string>
     <string name="home_add_title">Add a TV</string>
     <string name="coming_soon_title">Coming soon</string>
-    <string name="coming_soon_wifi_body">Searching your Wi-Fi for TVs is on its way. Meanwhile, you can try every button with the simulated TV.</string>
     <string name="coming_soon_ir_body">Infrared control is on its way. Meanwhile, you can try every button with the simulated TV.</string>
+
+
+    <!-- Discovery (milestone 2) -->
+    <string name="discover_searching">Looking for TVs on your Wi-Fi…</string>
+    <string name="discover_pick">Tap your TV to add it</string>
+    <string name="discover_device_detail" translatable="false">%1$s · %2$s</string>
+    <string name="discover_add">Add</string>
+    <string name="discover_saved">Already saved</string>
+    <string name="discover_none_title">No TVs found</string>
+    <string name="discover_none_body">Check that the TV is on and connected to the same Wi-Fi network as your phone, then search again.</string>
+    <string name="discover_search_again">Search again</string>
+    <string name="discover_not_found">Can’t see your TV?</string>
+    <string name="discover_no_wifi_body">To find your TV, connect your phone to the same Wi-Fi network as the TV. Mobile data doesn’t work for this.</string>
+    <string name="discover_open_wifi_settings">Open Wi-Fi settings</string>
+    <string name="manual_title">Add by IP address</string>
+    <string name="manual_instructions">You’ll find the IP address in your TV’s network settings (usually Settings › Network › Network status) or in your router’s list of devices.</string>
+    <string name="manual_ip_label">IP address</string>
+    <string name="manual_ip_placeholder" translatable="false">192.168.1.20</string>
+    <string name="manual_ip_error_format">Write four numbers from 0 to 255 separated by dots, like 192.168.1.20.</string>
+    <string name="manual_ip_error_reserved">This address can’t belong to a TV.</string>
+    <string name="manual_ip_warning_public">This doesn’t look like an address on a home network. Check it before saving.</string>
+    <string name="manual_platform_label">What kind of TV is it?</string>
+    <string name="manual_save">Add TV</string>
+    <string name="local_network_body">To find your TV, Android needs your permission for Remoto to talk to devices on your home network.\n\nRemoto only uses it to talk to your TV, and your list of devices never leaves your phone.</string>
+    <string name="local_network_open_settings">Open app settings</string>
+    <string name="diagnostics_copy">Copy diagnostic log</string>
+    <string name="diagnostics_copy_desc">If something doesn’t work, paste it in your message when you report it. It contains no full IP addresses or personal data, and it’s never sent anywhere on its own.</string>
+    <string name="diagnostics_copied">Diagnostic log copied</string>
+    <string name="diagnostics_clip_label">Remoto diagnostic log</string>
 
     <!-- Devices -->
     <string name="device_default_demo">Simulated TV</string>
@@ -47,6 +75,7 @@
     <!-- Remote -->
     <string name="remote_connecting">Connecting to %1$s…</string>
     <string name="remote_device_missing">This TV is no longer saved on this phone.</string>
+    <string name="remote_platform_coming_soon">%1$s is saved. Control for %2$s TVs is coming in a future version of the app. Meanwhile, you can try every button with the simulated TV.</string>
     <string name="remote_simulate_error">Simulate an error</string>
     <string name="simulate_timeout">Connection timed out</string>
     <string name="simulate_pairing_rejected">Pairing rejected</string>
@@ -142,4 +171,6 @@
     <string name="help_no_wifi_body">To control a TV over the network, connect your phone to the same Wi-Fi network as the TV. Mobile data doesn’t work for this.\n\nIf your phone has an infrared blaster, you can use infrared instead.</string>
     <string name="help_unreachable_title">Can’t reach the TV</string>
     <string name="help_unreachable_body">The TV isn’t answering at its usual address.\n\n• Turn the TV on with its original remote and try again.\n• If your router gave the TV a new address, search your Wi-Fi again.\n• Restarting the router can also help.</string>
+    <string name="help_tv_not_found_title">My TV doesn’t show up</string>
+    <string name="help_tv_not_found_body">Most of the time it’s the network. Check that:\n\n• The TV is on. Some TVs turn off their network a few minutes after you switch them off.\n• Your phone and the TV are on the same Wi-Fi network. Guest networks usually keep devices apart.\n• Your router doesn’t isolate devices from each other (sometimes called “AP isolation” or “client isolation”).\n• Your phone doesn’t have a VPN turned on.\n• Android TV / Google TV: the TV is on its home screen, not asleep.\n\nIf it still doesn’t show up, you can add it with its IP address.</string>
 </resources>
