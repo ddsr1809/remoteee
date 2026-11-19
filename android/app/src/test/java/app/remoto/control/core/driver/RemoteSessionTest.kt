@@ -1,5 +1,6 @@
 package app.remoto.control.core.driver
 
+import app.remoto.control.core.diagnostics.DiagnosticsLog
 import app.remoto.control.testutil.FakeDriverFactory
 import app.remoto.control.testutil.FakeTvDriver
 import app.remoto.control.testutil.InMemorySettingsRepository
@@ -20,7 +21,7 @@ class RemoteSessionTest {
     private val settings = InMemorySettingsRepository()
 
     private fun session(scope: CoroutineScope, factory: FakeDriverFactory = FakeDriverFactory(Platform.DEMO)) =
-        RemoteSession(setOf(factory), settings, scope)
+        RemoteSession(setOf(factory), settings, scope, DiagnosticsLog())
 
     @Test
     fun `abrir un dispositivo crea su driver, conecta y lo recuerda`() = runTest(UnconfinedTestDispatcher()) {

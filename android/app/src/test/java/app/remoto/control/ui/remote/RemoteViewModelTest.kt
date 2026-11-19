@@ -2,6 +2,7 @@ package app.remoto.control.ui.remote
 
 import androidx.lifecycle.SavedStateHandle
 import app.cash.turbine.test
+import app.remoto.control.core.diagnostics.DiagnosticsLog
 import app.remoto.control.core.driver.Capability
 import app.remoto.control.core.driver.ConnectionState
 import app.remoto.control.core.driver.FailureReason
@@ -43,7 +44,12 @@ class RemoteViewModelTest {
         driver: FakeTvDriver = FakeTvDriver(),
         deviceId: String = tv.id,
     ): RemoteViewModel {
-        val session = RemoteSession(setOf(FakeDriverFactory(Platform.DEMO) { driver }), settings, backgroundScope)
+        val session = RemoteSession(
+            setOf(FakeDriverFactory(Platform.DEMO) { driver }),
+            settings,
+            backgroundScope,
+            DiagnosticsLog(),
+        )
         return RemoteViewModel(
             SavedStateHandle(mapOf(RemoteViewModel.ARG_DEVICE_ID to deviceId)),
             session,
