@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Remoto</string>
+
+    <!-- Common actions -->
+    <string name="action_back">Back</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_close">Close</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_save">Save</string>
+    <string name="action_retry">Try again</string>
+    <string name="action_more_help">More help</string>
+
+    <!-- Welcome and home -->
+    <string name="welcome_title">Your phone is now a TV remote</string>
+    <string name="welcome_body">Control your TV over Wi-Fi or with your phone’s infrared sensor. Everything stays between your phone and your TV.</string>
+    <string name="start_option_wifi">Search my Wi-Fi</string>
+    <string name="start_option_wifi_desc">Find TVs and streaming players on your home network.</string>
+    <string name="start_option_ir">Use infrared</string>
+    <string name="start_option_ir_desc">For phones with an IR blaster. Works with older TVs too.</string>
+    <string name="start_option_demo">Try without a TV</string>
+    <string name="start_option_demo_desc">Explore the app with a simulated TV.</string>
+    <string name="home_last_device">Last used</string>
+    <string name="home_open_remote">Open remote</string>
+    <string name="home_add_title">Add a TV</string>
+    <string name="coming_soon_title">Coming soon</string>
+    <string name="coming_soon_wifi_body">Searching your Wi-Fi for TVs is on its way. Meanwhile, you can try every button with the simulated TV.</string>
+    <string name="coming_soon_ir_body">Infrared control is on its way. Meanwhile, you can try every button with the simulated TV.</string>
+
+    <!-- Devices -->
+    <string name="device_default_demo">Simulated TV</string>
+    <string name="platform_demo">Demo mode</string>
+    <string name="platform_android_tv" translatable="false">Android TV / Google TV</string>
+    <string name="platform_samsung" translatable="false">Samsung</string>
+    <string name="platform_lg" translatable="false">LG</string>
+    <string name="platform_roku" translatable="false">Roku</string>
+    <string name="platform_infrared">Infrared</string>
+    <string name="devices_title">Saved TVs</string>
+    <string name="devices_empty">You haven’t saved any TVs yet.</string>
+    <string name="devices_rename_title">Rename TV</string>
+    <string name="devices_rename_named">Rename %1$s</string>
+    <string name="devices_name_label">Name</string>
+    <string name="devices_delete_title">Delete %1$s?</string>
+    <string name="devices_delete_named">Delete %1$s</string>
+    <string name="devices_delete_body">Its pairing data will be deleted from this phone too.</string>
+
+    <!-- Remote -->
+    <string name="remote_connecting">Connecting to %1$s…</string>
+    <string name="remote_device_missing">This TV is no longer saved on this phone.</string>
+    <string name="remote_simulate_error">Simulate an error</string>
+    <string name="simulate_timeout">Connection timed out</string>
+    <string name="simulate_pairing_rejected">Pairing rejected</string>
+    <string name="simulate_permission_denied">Permission denied</string>
+    <string name="error_heading">Couldn’t connect</string>
+
+    <string name="key_up">Up</string>
+    <string name="key_down">Down</string>
+    <string name="key_left">Left</string>
+    <string name="key_right">Right</string>
+    <string name="key_ok">OK</string>
+    <string name="key_back">Back</string>
+    <string name="key_home">Home</string>
+    <string name="key_volume_up">Volume up</string>
+    <string name="key_volume_down">Volume down</string>
+    <string name="key_mute">Mute</string>
+    <string name="key_channel_up">Next channel</string>
+    <string name="key_channel_down">Previous channel</string>
+    <string name="key_play_pause">Play or pause</string>
+    <string name="key_power">Power</string>
+    <string name="key_keyboard">Keyboard</string>
+    <string name="key_touchpad">Touchpad</string>
+    <string name="key_dpad_mode">Back to the arrow keys</string>
+    <string name="key_apps">Apps</string>
+    <string name="label_volume">VOL</string>
+    <string name="label_channel">CH</string>
+
+    <string name="keyboard_title">Type on your TV</string>
+    <string name="keyboard_hint">Text</string>
+    <string name="keyboard_send">Send</string>
+    <string name="touchpad_hint">Slide to move the pointer. Tap to click.</string>
+    <string name="touchpad_description">Touchpad. Double tap to click.</string>
+    <string name="apps_title">Open an app</string>
+    <string name="apps_empty">This TV doesn’t share its list of apps.</string>
+
+    <!-- Pairing -->
+    <string name="pairing_title">Pair with your TV</string>
+    <string name="pairing_code_instructions">Enter the code shown on your TV screen.</string>
+    <string name="pairing_code_label">Code</string>
+    <string name="pairing_submit">Pair</string>
+    <string name="pairing_confirm_instructions">A request will appear on your TV. Accept it with the TV’s original remote.</string>
+    <string name="pairing_confirm_done">I accepted it on the TV</string>
+
+    <!-- Simulated TV -->
+    <string name="tv_off">The TV is off</string>
+    <string name="tv_home">Home screen</string>
+    <string name="tv_playing">Playing</string>
+    <string name="tv_paused">Paused</string>
+    <string name="tv_channel">CH %1$d</string>
+    <string name="tv_volume">Volume %1$d</string>
+    <string name="tv_pairing_code">Pairing code</string>
+    <string name="tv_key_received">%1$s</string>
+    <string name="tv_description_off">Simulated TV: off</string>
+    <string name="tv_description_pairing">Simulated TV showing the pairing code %1$s</string>
+    <string name="tv_description_on">Simulated TV: %1$s, volume %2$d, channel %3$d</string>
+    <string name="demo_app_movies">Movies</string>
+    <string name="demo_app_series">Series</string>
+    <string name="demo_app_music">Music</string>
+    <string name="demo_app_news">News</string>
+    <string name="demo_app_sports">Sports</string>
+    <string name="demo_app_kids">Kids</string>
+    <string name="demo_app_photos">Photos</string>
+    <string name="demo_app_games">Games</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_haptics">Vibrate on touch</string>
+    <string name="settings_haptics_desc">A short vibration when you press a button.</string>
+    <string name="settings_theme">Theme</string>
+    <string name="theme_system">System default</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="settings_language">Language</string>
+    <string name="settings_language_desc">The app follows your phone’s language (English or Spanish). On Android 13 and later you can also change it in your phone’s app settings.</string>
+    <string name="settings_about">About</string>
+    <string name="settings_version">Version %1$s</string>
+    <string name="settings_disclaimer">Remoto is not affiliated with or sponsored by the manufacturers mentioned in the app.</string>
+
+    <!-- Help -->
+    <string name="help_title">Help</string>
+    <string name="help_other_topics">Other topics</string>
+    <string name="help_getting_started_title">Getting started</string>
+    <string name="help_getting_started_body">Remoto works in two ways:\n\n• Wi-Fi: your phone and your TV must be on the same Wi-Fi network. The first time, the TV asks you to approve the connection.\n• Infrared: only on phones with an IR blaster. Point the top of the phone at the TV.\n\nNo TV at hand? Choose “Try without a TV” to explore every button with a simulated TV.</string>
+    <string name="help_demo_mode_title">About the simulated TV</string>
+    <string name="help_demo_mode_body">The simulated TV lives inside the app and doesn’t use your network. Every button you press shows a reaction on its screen.\n\nTo see how Remoto handles problems, tap the bug icon at the top of the remote and choose an error.</string>
+    <string name="help_timeout_title">The TV didn’t answer in time</string>
+    <string name="help_timeout_body">Check that:\n\n• The TV is on (some TVs turn off their network a few minutes after you switch them off).\n• Your phone and your TV are on the same Wi-Fi network, not a guest network.\n• Your router doesn’t isolate devices from each other (sometimes called “AP isolation” or “client isolation”).\n\nThen tap “Try again”.</string>
+    <string name="help_pairing_rejected_title">The TV rejected the pairing</string>
+    <string name="help_pairing_rejected_body">The code didn’t match or the request was declined on the TV.\n\n• Tap “Try again” and type the code exactly as it appears on the TV.\n• If the TV shows a request, accept it with its original remote.\n• If you declined it before, some TVs remember that: look for “connected devices” or “device manager” in the TV’s settings and allow Remoto.</string>
+    <string name="help_local_network_title">Allow access to nearby devices</string>
+    <string name="help_local_network_body">Recent versions of Android ask for permission before an app can talk to devices on your home network, such as your TV.\n\nTo allow it: open your phone’s Settings › Apps › Remoto › Permissions › Nearby devices, and choose Allow. Then come back and tap “Try again”.\n\nRemoto only uses this permission to talk to your TV. Your list of devices never leaves your phone.</string>
+    <string name="help_no_wifi_title">Your phone isn’t on Wi-Fi</string>
+    <string name="help_no_wifi_body">To control a TV over the network, connect your phone to the same Wi-Fi network as the TV. Mobile data doesn’t work for this.\n\nIf your phone has an infrared blaster, you can use infrared instead.</string>
+    <string name="help_unreachable_title">Can’t reach the TV</string>
+    <string name="help_unreachable_body">The TV isn’t answering at its usual address.\n\n• Turn the TV on with its original remote and try again.\n• If your router gave the TV a new address, search your Wi-Fi again.\n• Restarting the router can also help.</string>
+</resources>

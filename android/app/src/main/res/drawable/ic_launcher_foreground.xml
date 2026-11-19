@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Ícono provisional y propio (sin logotipos de fabricantes): la silueta de un control
+    con una cruceta circular. El definitivo se diseña en el hito 7.
+    Lienzo de 108 dp; el contenido queda dentro de la zona segura central de 66 dp.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M44,28 L64,28 A8,8 0 0 1 72,36 L72,76 A8,8 0 0 1 64,84 L44,84 A8,8 0 0 1 36,76 L36,36 A8,8 0 0 1 44,28 Z" />
+    <path
+        android:fillColor="#FF0E6B5C"
+        android:pathData="M43,49 A11,11 0 1 1 65,49 A11,11 0 1 1 43,49 Z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M49.5,49 A4.5,4.5 0 1 1 58.5,49 A4.5,4.5 0 1 1 49.5,49 Z" />
+    <path
+        android:fillColor="#FF0E6B5C"
+        android:pathData="M44,66 L50,66 L50,70 L44,70 Z M58,66 L64,66 L64,70 L58,70 Z M44,74 L50,74 L50,78 L44,78 Z M58,74 L64,74 L64,78 L58,78 Z" />
+</vector>

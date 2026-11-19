@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Acciones comunes -->
+    <string name="action_back">Atrás</string>
+    <string name="action_cancel">Cancelar</string>
+    <string name="action_close">Cerrar</string>
+    <string name="action_delete">Borrar</string>
+    <string name="action_save">Guardar</string>
+    <string name="action_retry">Reintentar</string>
+    <string name="action_more_help">Más ayuda</string>
+
+    <!-- Bienvenida e inicio -->
+    <string name="welcome_title">Tu teléfono ahora es el control de la tele</string>
+    <string name="welcome_body">Controla tu tele por Wi-Fi o con el emisor infrarrojo del teléfono. Todo queda entre tu teléfono y tu tele.</string>
+    <string name="start_option_wifi">Buscar en mi Wi-Fi</string>
+    <string name="start_option_wifi_desc">Encuentra teles y reproductores en la red de tu casa.</string>
+    <string name="start_option_ir">Usar infrarrojo</string>
+    <string name="start_option_ir_desc">Para teléfonos con emisor IR. También sirve con teles antiguas.</string>
+    <string name="start_option_demo">Probar sin tele</string>
+    <string name="start_option_demo_desc">Explora la app con una tele simulada.</string>
+    <string name="home_last_device">Última usada</string>
+    <string name="home_open_remote">Abrir el control</string>
+    <string name="home_add_title">Agregar una tele</string>
+    <string name="coming_soon_title">Próximamente</string>
+    <string name="coming_soon_wifi_body">La búsqueda de teles en tu Wi-Fi está en camino. Mientras tanto, puedes probar todos los botones con la tele simulada.</string>
+    <string name="coming_soon_ir_body">El control por infrarrojo está en camino. Mientras tanto, puedes probar todos los botones con la tele simulada.</string>
+
+    <!-- Dispositivos -->
+    <string name="device_default_demo">Tele simulada</string>
+    <string name="platform_demo">Modo demostración</string>
+    <string name="platform_infrared">Infrarrojo</string>
+    <string name="devices_title">Teles guardadas</string>
+    <string name="devices_empty">Todavía no guardaste ninguna tele.</string>
+    <string name="devices_rename_title">Cambiar nombre</string>
+    <string name="devices_rename_named">Cambiar el nombre de %1$s</string>
+    <string name="devices_name_label">Nombre</string>
+    <string name="devices_delete_title">¿Borrar %1$s?</string>
+    <string name="devices_delete_named">Borrar %1$s</string>
+    <string name="devices_delete_body">También se borrarán de este teléfono sus datos de emparejamiento.</string>
+
+    <!-- Control -->
+    <string name="remote_connecting">Conectando con %1$s…</string>
+    <string name="remote_device_missing">Esta tele ya no está guardada en este teléfono.</string>
+    <string name="remote_simulate_error">Simular un error</string>
+    <string name="simulate_timeout">Tiempo de conexión agotado</string>
+    <string name="simulate_pairing_rejected">Emparejamiento rechazado</string>
+    <string name="simulate_permission_denied">Permiso denegado</string>
+    <string name="error_heading">No se pudo conectar</string>
+
+    <string name="key_up">Arriba</string>
+    <string name="key_down">Abajo</string>
+    <string name="key_left">Izquierda</string>
+    <string name="key_right">Derecha</string>
+    <string name="key_ok">Aceptar</string>
+    <string name="key_back">Atrás</string>
+    <string name="key_home">Inicio</string>
+    <string name="key_volume_up">Subir volumen</string>
+    <string name="key_volume_down">Bajar volumen</string>
+    <string name="key_mute">Silenciar</string>
+    <string name="key_channel_up">Canal siguiente</string>
+    <string name="key_channel_down">Canal anterior</string>
+    <string name="key_play_pause">Reproducir o pausar</string>
+    <string name="key_power">Encendido</string>
+    <string name="key_keyboard">Teclado</string>
+    <string name="key_touchpad">Touchpad</string>
+    <string name="key_dpad_mode">Volver a las flechas</string>
+    <string name="key_apps">Apps</string>
+    <string name="label_volume">VOL</string>
+    <string name="label_channel">CH</string>
+
+    <string name="keyboard_title">Escribir en la tele</string>
+    <string name="keyboard_hint">Texto</string>
+    <string name="keyboard_send">Enviar</string>
+    <string name="touchpad_hint">Desliza para mover el puntero. Toca para hacer clic.</string>
+    <string name="touchpad_description">Touchpad. Toca dos veces para hacer clic.</string>
+    <string name="apps_title">Abrir una app</string>
+    <string name="apps_empty">Esta tele no comparte su lista de apps.</string>
+
+    <!-- Emparejamiento -->
+    <string name="pairing_title">Emparejar con tu tele</string>
+    <string name="pairing_code_instructions">Escribe el código que aparece en la pantalla de tu tele.</string>
+    <string name="pairing_code_label">Código</string>
+    <string name="pairing_submit">Emparejar</string>
+    <string name="pairing_confirm_instructions">Aparecerá un aviso en tu tele. Acéptalo con el control original de la tele.</string>
+    <string name="pairing_confirm_done">Ya lo acepté en la tele</string>
+
+    <!-- Tele simulada -->
+    <string name="tv_off">La tele está apagada</string>
+    <string name="tv_home">Pantalla de inicio</string>
+    <string name="tv_playing">Reproduciendo</string>
+    <string name="tv_paused">En pausa</string>
+    <string name="tv_channel">CH %1$d</string>
+    <string name="tv_volume">Volumen %1$d</string>
+    <string name="tv_pairing_code">Código de emparejamiento</string>
+    <string name="tv_key_received">%1$s</string>
+    <string name="tv_description_off">Tele simulada: apagada</string>
+    <string name="tv_description_pairing">Tele simulada mostrando el código de emparejamiento %1$s</string>
+    <string name="tv_description_on">Tele simulada: %1$s, volumen %2$d, canal %3$d</string>
+    <string name="demo_app_movies">Películas</string>
+    <string name="demo_app_series">Series</string>
+    <string name="demo_app_music">Música</string>
+    <string name="demo_app_news">Noticias</string>
+    <string name="demo_app_sports">Deportes</string>
+    <string name="demo_app_kids">Niños</string>
+    <string name="demo_app_photos">Fotos</string>
+    <string name="demo_app_games">Juegos</string>
+
+    <!-- Ajustes -->
+    <string name="settings_title">Ajustes</string>
+    <string name="settings_haptics">Vibrar al tocar</string>
+    <string name="settings_haptics_desc">Una vibración breve al pulsar un botón.</string>
+    <string name="settings_theme">Tema</string>
+    <string name="theme_system">Según el sistema</string>
+    <string name="theme_light">Claro</string>
+    <string name="theme_dark">Oscuro</string>
+    <string name="settings_language">Idioma</string>
+    <string name="settings_language_desc">La app sigue el idioma del teléfono (español o inglés). En Android 13 o posterior también puedes cambiarlo en los ajustes de la app del teléfono.</string>
+    <string name="settings_about">Acerca de</string>
+    <string name="settings_version">Versión %1$s</string>
+    <string name="settings_disclaimer">Remoto no está afiliada ni patrocinada por los fabricantes mencionados en la app.</string>
+
+    <!-- Ayuda -->
+    <string name="help_title">Ayuda</string>
+    <string name="help_other_topics">Otros temas</string>
+    <string name="help_getting_started_title">Primeros pasos</string>
+    <string name="help_getting_started_body">Remoto funciona de dos formas:\n\n• Wi-Fi: el teléfono y la tele deben estar en la misma red Wi-Fi. La primera vez, la tele te pide aprobar la conexión.\n• Infrarrojo: solo en teléfonos con emisor IR. Apunta la parte de arriba del teléfono hacia la tele.\n\n¿No tienes la tele a mano? Elige «Probar sin tele» para probar todos los botones con una tele simulada.</string>
+    <string name="help_demo_mode_title">Sobre la tele simulada</string>
+    <string name="help_demo_mode_body">La tele simulada vive dentro de la app y no usa tu red. Cada botón que pulses produce una reacción en su pantalla.\n\nPara ver cómo maneja Remoto los problemas, toca el ícono del insecto arriba del control y elige un error.</string>
+    <string name="help_timeout_title">La tele no respondió a tiempo</string>
+    <string name="help_timeout_body">Comprueba que:\n\n• La tele esté encendida (algunas apagan su red unos minutos después de apagarlas).\n• El teléfono y la tele estén en la misma red Wi-Fi, no en una red de invitados.\n• El router no aísle a los dispositivos entre sí (a veces se llama «aislamiento de AP» o «aislamiento de clientes»).\n\nLuego toca «Reintentar».</string>
+    <string name="help_pairing_rejected_title">La tele rechazó el emparejamiento</string>
+    <string name="help_pairing_rejected_body">El código no coincidió o se rechazó la solicitud en la tele.\n\n• Toca «Reintentar» y escribe el código tal como aparece en la tele.\n• Si la tele muestra un aviso, acéptalo con su control original.\n• Si lo rechazaste antes, algunas teles lo recuerdan: busca «dispositivos conectados» o «administrador de dispositivos» en los ajustes de la tele y permite Remoto.</string>
+    <string name="help_local_network_title">Permite el acceso a dispositivos cercanos</string>
+    <string name="help_local_network_body">Las versiones recientes de Android piden permiso antes de que una app hable con dispositivos de tu red, como tu tele.\n\nPara permitirlo: abre Ajustes del teléfono › Aplicaciones › Remoto › Permisos › Dispositivos cercanos y elige Permitir. Después vuelve y toca «Reintentar».\n\nRemoto solo usa este permiso para hablar con tu tele. Tu lista de dispositivos nunca sale del teléfono.</string>
+    <string name="help_no_wifi_title">Tu teléfono no está conectado al Wi-Fi</string>
+    <string name="help_no_wifi_body">Para controlar una tele por la red, conecta el teléfono a la misma red Wi-Fi que la tele. Los datos móviles no sirven para esto.\n\nSi tu teléfono tiene emisor infrarrojo, puedes usar el infrarrojo.</string>
+    <string name="help_unreachable_title">No se encuentra la tele</string>
+    <string name="help_unreachable_body">La tele no responde en su dirección de siempre.\n\n• Enciende la tele con su control original e inténtalo de nuevo.\n• Si el router le dio una dirección nueva, vuelve a buscar en tu Wi-Fi.\n• Reiniciar el router también puede ayudar.</string>
+</resources>
