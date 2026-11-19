@@ -22,7 +22,10 @@ Las versiones exactas de cada dependencia están en [`gradle/libs.versions.toml`
 
 ## Compilar y probar
 
+El proyecto Gradle está en la carpeta `android/` (ábrela en Android Studio).
+
 ```bash
+cd android
 # Primera vez: Android Studio crea local.properties con la ruta del SDK.
 ./gradlew assembleDebug test     # APK de depuración + pruebas unitarias
 ./gradlew ktlintCheck            # estilo de código

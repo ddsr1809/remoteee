@@ -1,7 +1,9 @@
 # Progreso del proyecto
 
-**Hito actual:** 0 — Preparación
-**Estado:** completo. Siguiente: hito 1 (Base y tele simulada).
+**Hito actual:** 2 — Descubrimiento
+**Estado:** código completo, pendiente de compilar en un equipo con Android SDK y de las pruebas manuales en la red del dueño. El hito 1 también espera su primera compilación (ver abajo).
+
+> El proyecto Gradle vive en `android/` desde que el repositorio pasó a GitHub (`ddsr1809/remoteee`, rama `development`).
 
 > Si una sesión nueva retoma el trabajo: leer primero `prompt_control_remoto_android.md` (instrucciones del proyecto) y después este archivo. Continuar desde la última tarea marcada.
 
@@ -39,6 +41,16 @@ El dueño pidió que yo respondiera las preguntas del hito 0. Estas son las supo
 | D-08 | 2026-11-18 | El modo demostración vive detrás de una interfaz de núcleo `SimulatedTv` | La pantalla del control necesita dibujar la tele simulada y simular errores sin importar `drivers/demo`. La sesión expone `SimulatedTv?`; solo el driver demo lo implementa. |
 | D-09 | 2026-11-18 | Secretos: Tink AEAD (AES-256-GCM) con clave maestra en Android Keystore; el texto cifrado va en un Preferences DataStore propio | Como pide el prompt. Tink guarda su propio *keyset* (ya cifrado por Keystore) en SharedPreferences: así funciona `AndroidKeysetManager`. Ambos archivos quedan **fuera de las copias de seguridad**, porque la clave de Keystore no viaja a otro teléfono y el cifrado restaurado sería ilegible. |
 | D-10 | 2026-11-18 | Hápticos con `View.performHapticFeedback` | No requiere el permiso `VIBRATE`, que no está en la lista de la sección 7.4. |
+| D-11 | 2026-11-18 | SSDP pide un `ST` por plataforma (`roku:ecp`, `urn:samsung.com:device:RemoteControlReceiver:1`, `urn:lge-com:service:webos-second-screen:1`), no `ssdp:all` | Con `ssdp:all` contestan routers, impresoras y altavoces; con tipos concretos solo contestan teles y la plataforma sale del propio `ST`. Roku está documentado; **Samsung y LG salen de bibliotecas de código abierto y hay que confirmarlos con hardware real**. |
+| D-12 | 2026-11-18 | Android TV se busca solo por mDNS (`_androidtvremote2._tcp`) con `NsdManager` | Es el servicio del protocolo que usará su driver y trae el nombre de la tele. `NsdManager` viene en Android y no necesita el bloqueo de multidifusión. Las resoluciones van en fila porque Android 13 y anteriores solo admiten una a la vez. |
+| D-13 | 2026-11-18 | Dos resultados son la misma tele si comparten IP **o** identificador; si las vías discrepan en la plataforma, gana Android TV | El identificador cubre teles con Wi-Fi y cable a la vez. El servicio mDNS de Android TV es más específico que cualquier pista de SSDP. |
+| D-14 | 2026-11-18 | En el hito 2 **no** se descarga la descripción UPnP (`LOCATION`) para leer el nombre de la tele | Es HTTP sin cifrar a la red local y Android lo bloquea por defecto; abrirlo es una decisión del hito 4 (Roku) con su configuración mínima. El nombre llega por mDNS (Android TV) o lo pondrá cada driver (Samsung `/api/v2/`, Roku `device-info`, LG SSAP); mientras, se muestra la plataforma y el usuario puede renombrar. |
+| D-15 | 2026-11-18 | Permisos nuevos: solo `INTERNET`, `ACCESS_NETWORK_STATE` y `CHANGE_WIFI_MULTICAST_STATE` | Son los únicos que usa la búsqueda. `ACCESS_WIFI_STATE` no hace falta todavía (no se lee el nombre ni la IP de la Wi-Fi). Sigue sin declararse `ACCESS_LOCAL_NETWORK` (targetSdk 36). |
+| D-16 | 2026-11-18 | El socket SSDP se ata a la red Wi-Fi con `Network.bindSocket`, eligiendo una red Wi-Fi o Ethernet que no sea VPN | Con datos móviles o una VPN activa, el `M-SEARCH` podría salir por otra red y no encontrar nada. |
+| D-17 | 2026-11-18 | Registro de diagnóstico solo en memoria (300 entradas), con redacción al entrar; la cabecera lleva versión de la app, de Android y fabricante/modelo del teléfono | Se oculta lo que identifica a la persona o su red (IP a medias, IPv6, MAC, UUID acortado) y nunca se registran nombres de teles. El modelo del teléfono no es un dato personal y explica fallos de multidifusión de algunos fabricantes. Nunca se envía solo: el usuario lo copia. |
+| D-18 | 2026-11-18 | Las teles sin driver se pueden guardar ya; el control muestra "llega en una próxima versión" | Así el flujo buscar → guardar queda probado de punta a punta y en el hito 3 solo cambia lo que pasa al abrir el control. |
+| D-19 | 2026-11-18 | "Agregar por IP" acepta solo IPv4 y pide elegir la plataforma | Sin drivers no hay forma fiable de preguntarle a la tele qué es. Se rechazan direcciones que nunca son una tele y se avisa (sin bloquear) si no es de una red privada. |
+| D-20 | 2026-11-18 | `TvDevice.uniqueId` opcional y `RemoteSession` recibe `DiagnosticsLog` sin valor por defecto | Lo guardado en el hito 1 se sigue leyendo (campo ausente = `null`). Sin valor por defecto se evita cualquier duda de Dagger con el constructor sintético que genera Kotlin. |
 
 ---
 
@@ -78,36 +90,42 @@ app/src/test/java/app/remoto/control/   pruebas unitarias
 
 ---
 
-## Hito 1 — Base y tele simulada ⏳
+## Hito 1 — Base y tele simulada ⏳ (código completo; falta compilar y etiquetar `hito-1`)
 
-- [ ] Proyecto con Gradle Kotlin DSL y catálogo de versiones; `targetSdk` 36 y `compileSdk` 37 (D-03).
-- [ ] Hilt, Navigation Compose, tema Material 3 claro y oscuro (con color dinámico en Android 12+).
-- [ ] `strings.xml` en inglés (`values/`) y español (`values-es/`); ningún texto fijo en el código.
-- [ ] Paquetes de la sección 7.2 (los vacíos llevan `.gitkeep`).
-- [ ] Modelo común: `TvDriver`, `Capability`, `RemoteKey`, `ConnectionState`, `PairingType`, `FailureReason`, `HelpTopic`.
-- [ ] Driver demo con tele simulada que reacciona y errores simulados (tiempo agotado, emparejamiento rechazado, permiso negado).
-- [ ] Pantallas: bienvenida, inicio, control, emparejamiento, dispositivos guardados, ajustes (sin Pro) y ayuda.
-- [ ] Primera apertura con "Buscar en mi Wi-Fi", "Usar infrarrojo" (→ "próximamente") y "Probar sin tele".
-- [ ] Almacenamiento de dispositivos con DataStore.
-- [ ] Almacén de secretos con Tink y Android Keystore (el demo lo usa para recordar que ya se emparejó).
-- [ ] Vibración al tocar, desactivable.
-- [ ] Accesibilidad: descripción en cada botón, objetivos táctiles ≥ 48 dp.
-- [ ] Pruebas unitarias del ViewModel del control, de la sesión y de los estados de conexión.
+- [x] Proyecto con Gradle Kotlin DSL y catálogo de versiones; `targetSdk` 36 y `compileSdk` 37 (D-03).
+- [x] Hilt, Navigation Compose, tema Material 3 claro y oscuro (con color dinámico en Android 12+).
+- [x] `strings.xml` en inglés (`values/`) y español (`values-es/`); ningún texto fijo en el código.
+- [x] Paquetes de la sección 7.2 (los vacíos llevan `.gitkeep`).
+- [x] Modelo común: `TvDriver`, `Capability`, `RemoteKey`, `ConnectionState`, `PairingType`, `FailureReason`, `HelpTopic`.
+- [x] Driver demo con tele simulada que reacciona y errores simulados (tiempo agotado, emparejamiento rechazado, permiso negado).
+- [x] Pantallas: bienvenida, inicio, control, emparejamiento, dispositivos guardados, ajustes (sin Pro) y ayuda.
+- [x] Primera apertura con "Buscar en mi Wi-Fi", "Usar infrarrojo" (→ "próximamente") y "Probar sin tele".
+- [x] Almacenamiento de dispositivos con DataStore.
+- [x] Almacén de secretos con Tink y Android Keystore (el demo lo usa para recordar que ya se emparejó).
+- [x] Vibración al tocar, desactivable.
+- [x] Accesibilidad: descripción en cada botón, objetivos táctiles ≥ 48 dp.
+- [x] Pruebas unitarias del ViewModel del control, de la sesión y de los estados de conexión.
 
 ---
 
-## Hito 2 — Descubrimiento
+Pendiente: `./gradlew assembleDebug test` en un equipo con SDK, las 16 pruebas manuales de `android/docs/cierres/hito-1.md` y la aprobación del dueño.
 
-- [ ] Búsqueda SSDP con `MulticastSocket` y `WifiManager.MulticastLock`, tomado solo durante la búsqueda.
-- [ ] Búsqueda mDNS con `NsdManager`.
-- [ ] Lista unificada: un dispositivo aparece una sola vez aunque responda por dos vías.
-- [ ] Identificación de plataforma (Roku, Samsung, LG, Android TV) a partir de las respuestas.
-- [ ] Agregar dispositivo por IP manual.
-- [ ] Detección de "sin Wi-Fi" antes de buscar.
-- [ ] Capa `LocalNetworkAccess` con la pantalla que explica el permiso de red local, sin activarla.
-- [ ] Pantalla "No aparece mi tele" con IP manual y consejos.
-- [ ] Registro de diagnóstico copiable, sin IP completas ni datos personales.
-- [ ] Pruebas unitarias del analizador SSDP y de la deduplicación.
+---
+
+## Hito 2 — Descubrimiento ⏳ (código completo; falta compilar y probar en la red del dueño)
+
+- [x] Búsqueda SSDP con `MulticastSocket` y `WifiManager.MulticastLock`, tomado solo durante la búsqueda.
+- [x] Búsqueda mDNS con `NsdManager`.
+- [x] Lista unificada: un dispositivo aparece una sola vez aunque responda por dos vías.
+- [x] Identificación de plataforma (Roku, Samsung, LG, Android TV) a partir de las respuestas.
+- [x] Agregar dispositivo por IP manual.
+- [x] Detección de "sin Wi-Fi" antes de buscar.
+- [x] Capa `LocalNetworkAccess` con la pantalla que explica el permiso de red local, sin activarla.
+- [x] Pantalla "No aparece mi tele" con IP manual y consejos.
+- [x] Registro de diagnóstico copiable, sin IP completas ni datos personales.
+- [x] Pruebas unitarias del analizador SSDP y de la deduplicación.
+
+Cierre: `android/docs/cierres/hito-2.md`.
 
 ## Hito 3 — Primer driver real (Android TV o Samsung, según hardware)
 
@@ -168,5 +186,8 @@ app/src/test/java/app/remoto/control/   pruebas unitarias
 
 ## Pendientes que pasan al siguiente hito
 
+- Compilar por primera vez (hitos 1 y 2) y corregir lo que salga.
+- Confirmar con teles reales los `ST` de Samsung y LG y el servicio mDNS de Android TV (D-11, D-12).
 - Confirmar el nombre y el `applicationId` antes de la primera subida a Play.
 - Saber qué tele y qué teléfono hay para pruebas antes de H3.
+- H3/H4: cada driver debe leer el nombre real de la tele y actualizar el guardado si el usuario no lo renombró (D-14).
